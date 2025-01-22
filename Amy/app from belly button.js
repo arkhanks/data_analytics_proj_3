@@ -96,7 +96,7 @@ function buildCharts(sample) {
 
       let trace1 = {
         x: top10Data.map(object => object.sample_value), 
-        y: yticks, // using the mapped OTU IDs 
+        y: yticks, // using the mapped Country and Year 
         text: top10Data.map(object => object.otu_label), // Labels for the hover text
         type: "bar", 
         orientation: "h" 
@@ -104,8 +104,8 @@ function buildCharts(sample) {
       
       // Layout for the Bar Chart
       let layout = {
-        title: "Top 10 Bacteria Cultures Found", 
-        xaxis: { title: "Number of Bacteria" }, 
+        title: "Electric Vehicle Info", 
+        xaxis: { title: "Number EVs Sold" }, 
         yaxis: { title: " " }, 
         margin: { l: 100, r: 100, t: 100, b: 100 } 
       };
