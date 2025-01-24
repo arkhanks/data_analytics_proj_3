@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charging Stations Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        h1 {
+            position: absolute;
+            z-index: 1000;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Charging Stations in USA</h1>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([37.7749, -122.4194], 10); // Default to San Francisco
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Create a MarkerClusterGroup
+        var markers = L.markerClusterGroup();
+
+        // Fetch charging stations data from Flask API
+        fetch('http://127.0.0.1:5000/api/v1.0/charging_stations')
+            .then(response => response.json())
+            .then(stations => {
+                stations.forEach(station => {
+                    if (station.latitude && station.longitude) {
+                        var marker = L.marker([station.latitude, station.longitude])
+                            .bindPopup(`
+                                <b>${station.station_name}</b><br>
+                                ${station.street_address}<br>
+                                City: ${station.city}, ${station.state}<br>
+                                Level 1 Ports: ${station.level_1_ports !== null ? station.level_1_ports : 'N/A'}<br>
+                                Level 2 Ports: ${station.level_2_ports !== null ? station.level_2_ports : 'N/A'}<br>
+                                DC Fast Ports: ${station.dc_fast_ports !== null ? station.dc_fast_ports : 'N/A'}
+                            `);
+                        markers.addLayer(marker);
+                    }
+                });
+                map.addLayer(markers);
+            })
+            .catch(error => {
+                console.error('Error fetching stations data:', error);
+            });
+    </script>
+</body>
+</html>

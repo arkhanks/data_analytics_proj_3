@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Sales vs Charging Ports</title>
+    <!-- Include Plotly.js for plotting charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>EV Sales vs Charging Ports</h1>
+        <form id="regionForm">
+            <label for="region">Select Region: </label>
+            <select id="region" required>
+                <option value="">--Select Region--</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="plot" style="width: 80%; height: 600px; margin: 50px auto;"></div>
+
+    <script>
+        // Fetch and populate the regions dropdown when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+             fetch('http://127.0.0.1:5000/regions')
+                .then(response => response.json())
+                .then(data => {
+                    const regionSelect = document.getElementById('region');
+                    data.forEach(region => {
+                        const option = document.createElement('option');
+                        option.value = region;
+                        option.textContent = region;
+                        regionSelect.appendChild(option);
+                    });
+                });
+
+            // Handle form submission to fetch EV sales vs charging ports data
+            document.getElementById('regionForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const region = document.getElementById('region').value;
+
+                // If no region is selected, return early
+                if (!region) {
+                    alert("Please select a region.");
+                    return;
+                }
+
+                // Fetch data for selected region
+                fetch('/api/v1.0/get_ev_sales_vs_ports_data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ region: region })  // Use the `region` variable here, not `selectedRegion`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Prepare data for Plotly
+                    const salesYears = data.sales.map(item => item.year);
+                    const salesValues = data.sales.map(item => item.value);
+
+                    const portsYears = data.ports.map(item => item.year);
+                    const portsValues = data.ports.map(item => item.value);
+
+                    // Create the traces for the chart
+                    const evSalesTrace = {
+                        x: salesYears,
+                        y: salesValues,
+                        type: 'scatter',
+                        name: 'EV Sales',
+                        mode: 'lines+markers',
+                        marker: { color: 'blue' },
+                    };
+
+                    const chargingPortsTrace = {
+                        x: portsYears,
+                        y: portsValues,
+                        type: 'scatter',
+                        name: 'Charging Ports',
+                        mode: 'lines+markers',
+                        marker: { color: 'green' },
+                    };
+
+                    // Layout settings for the chart
+                    const layout = {
+                        title: `EV Sales vs Charging Ports in ${region}`,
+                        xaxis: {
+                            title: 'Year',
+                            showgrid: true,
+                        },
+                        yaxis: {
+                            title: 'Value',
+                            showgrid: true,
+                        },
+                        showlegend: true
+                    };
+
+                    // Plot the chart using Plotly
+                    Plotly.newPlot('plot', [evSalesTrace, chargingPortsTrace], layout);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    alert('Error fetching data. Please try again later.');
+                });
+            });
+        });
+    </script>
+ <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        background-image: url('https://www.science-et-vie.com/wp-content/uploads/scienceetvie/2022/06/bornes-voitures-electriques.jpg'); /* Add your background image URL */
+        background-size: cover;
+        background-position: center;
+        position: relative; /* To allow overlay positioning */
+    }
+    
+    /* Dim overlay */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black color with transparency */
+        z-index: -1; /* Ensure it stays behind the content */
+    }
+</style>
+</body>
+</html>
