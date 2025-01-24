@@ -32,6 +32,8 @@ L.control.layers(baseMaps).addTo(myMap);
 
 let link="http://localhost:5000/api/v1.0/chargers"
 
+console.log(link);
+
 d3.json(link).then(function(data) {
 
   // This function returns the style data for each of the earthquakes we plot on
