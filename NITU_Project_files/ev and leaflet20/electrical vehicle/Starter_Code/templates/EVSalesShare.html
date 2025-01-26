@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Sales Share - Grouped Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #evSalesChart {
+            max-width: 1100px; /* Increased chart width */
+            margin: 0 auto;
+            height: 600px; /* Increased chart height */
+        }
+
+        @media (max-width: 768px) {
+            #evSalesChart {
+                width: 100%;
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="evSalesChart"></canvas>
+
+    <script>
+        // Fetch data from Flask API
+        fetch('http://127.0.0.1:5000/get_data')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+
+                const years = data.years;
+                const modes = data.modes;
+                const values = data.values;
+
+                // Attractive custom color palette
+                const colors = [
+                    '#4e79a7', // Blue
+                    '#f28e2c', // Orange
+                    '#e15759', // Red
+                    '#76b7b2', // Teal
+                    '#59a14f', // Green
+                    '#edc949', // Yellow
+                ];
+
+                // Prepare datasets for grouped bars
+                const datasets = modes.map((mode, index) => ({
+                    label: mode,
+                    data: values[index],
+                    backgroundColor: colors[index % colors.length], // Use colors dynamically
+                    borderColor: colors[index % colors.length],
+                    borderWidth: 2, // Slightly thicker borders
+                }));
+
+                // Chart.js configuration
+                const ctx = document.getElementById('evSalesChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Bar chart type
+                    data: {
+                        labels: years, // X-axis labels (Years)
+                        datasets: datasets, // Data for grouped bars
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Year',
+                                    font: {
+                                        size: 18, // Increased font size
+                                        family: 'Arial, sans-serif',
+                                        weight: 'bold',
+                                    },
+                                },
+                                stacked: false,
+                                ticks: {
+                                    font: {
+                                        size: 14, // Slightly larger tick font size
+                                    },
+                                },
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'EV Sales Share (%)',
+                                    font: {
+                                        size: 18,
+                                        family: 'Arial, sans-serif',
+                                        weight: 'bold',
+                                    },
+                                },
+                                stacked: false,
+                                ticks: {
+                                    font: {
+                                        size: 14,
+                                    },
+                                },
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        size: 16, // Larger legend font
+                                        family: 'Arial, sans-serif',
+                                    },
+                                    padding: 15, // Increase spacing between legend items
+                                },
+                            },
+                            title: {
+                                display: true,
+                                text: 'EV Sales Share by Mode (Grouped Bar Chart)',
+                                font: {
+                                    size: 22, // Larger title font
+                                    family: 'Arial, sans-serif',
+                                    weight: 'bold',
+                                },
+                                padding: {
+                                    top: 20,
+                                    bottom: 20,
+                                },
+                            },
+                        },
+                        animation: {
+                            duration: 3000, // Extend animation duration to 3 seconds
+                            easing: 'easeOutElastic', // Elastic easing animation
+                            onProgress: function(animation) {
+                                // Optional: Log animation progress to console
+                                console.log(`Progress: ${animation.currentStep / animation.numSteps * 100}%`);
+                            },
+                            onComplete: function() {
+                                console.log('Animation complete!');
+                            },
+                        },
+                    },
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = 'Failed to load the data. Please try again later.';
+                errorMessage.style.textAlign = 'center';
+                errorMessage.style.color = 'red';
+                document.body.appendChild(errorMessage);
+            });
+    </script>
+
+</body>
+</html>
