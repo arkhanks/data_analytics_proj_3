@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
 import psycopg2
 import pandas as pd
-
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -10,9 +9,9 @@ CORS(app)  # Enable CORS for all domains (required for fetching data from fronte
 # Function to establish a database connection
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname="ev_database",  # Your actual database name
-        user="postgres",        # Your username
-        password="postgres",    # Your password
+        dbname="ev_database",   # database name
+        user="postgres",        # username
+        password="postgres",    # password
         host="localhost",       # Default is localhost
         port="5432"             # Default port
     )
