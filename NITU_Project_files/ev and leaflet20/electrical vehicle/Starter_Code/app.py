@@ -9,9 +9,9 @@ CORS(app)  # Enable CORS globally for all routes
 
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname="ev_database",  # Your actual database name
-        user="postgres",        # Your username
-        password="postgres",    # Your password
+        dbname="ev_database",   # database name
+        user="postgres",        # username
+        password="postgres",    # password
         host="localhost",       # Default is localhost
         port="5432"             # Default port
     )

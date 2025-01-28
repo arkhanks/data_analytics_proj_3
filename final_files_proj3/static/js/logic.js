@@ -30,33 +30,44 @@ let baseMaps = {
 L.control.layers(baseMaps).addTo(myMap);
 // Make a request that retrieves the charging station geoJSON data.
 
-let link = "http://localhost:5000/api/v1.0/chargers";
+let link = "http://127.0.0.1:5000/api/v1.0/chargers";
 
-d3.json(d3.json("http://localhost:5000/api/v1.0/chargers").then(function(data) {
-  console.log(data); // Check the data structure in the console
+d3.json(link).then(function(data) {
+    // Loop through the data (stations array) and create markers
+    data.forEach(function(station) {
+        let myLocation = [station.latitude, station.longitude];
 
+        // Create a circle marker for each charging station
+        L.circle(myLocation, {
+            fillOpacity: 1,
+            color: "blue",
+            fillColor: "purple",
+            radius: 250  // Adjust size based on your requirements
+        }).bindPopup(`<h1>${station.station_name}</h1> <hr> <h3>Address: ${station.street_address}, ${station.city}, ${station.state}</h3>`).addTo(myMap);
+    });
+});
 
   // This function returns the style data for each of the charging stations we plot on
   // the mapinto two separate functions
   // to calculate the color and radius.
 
 
-  function markerSize(population) {
-    return Math.sqrt(population) * 50;
-  }
+//   function markerSize(population) {
+//     return Math.sqrt(population) * 50;
+//   }
 
-  // Loop through the cities array, and create one marker for each city object.
-  data.forEach(function(station){
-    let myLocation = [station.latitude, station.longitude];
+//   // Loop through the cities array, and create one marker for each city object.
+//   data.forEach(function(station){
+//     let myLocation = [station.latitude, station.longitude];
 
-    // Create a circle marker for each charging station
-    L.circle(myLocation, {
-      fillOpacity: 1,
-      color: "blue",
-      fillColor: "purple",
-      // Setting our circle's radius to equal the output of our markerSize() function:
-      // This will make our marker's size proportionate to its population.
-      radius:'250'
-    }).bindPopup(`<h1>$station.station_name}</h1> <hr> <h3>Address: ${station.street_address}, ${station.city}</h3>`).addTo(myMap);
-  })
-}));
+//     // Create a circle marker for each charging station
+//     L.circle(myLocation, {
+//       fillOpacity: 1,
+//       color: "blue",
+//       fillColor: "purple",
+//       // Setting our circle's radius to equal the output of our markerSize() function:
+//       // This will make our marker's size proportionate to its population.
+//       radius:'250'
+//     }).bindPopup(`<h1>$station.station_name}</h1> <hr> <h3>Address: ${station.street_address}, ${station.city}</h3>`).addTo(myMap);
+//   })
+// }));
