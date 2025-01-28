@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Countries by EV Sales in 2023</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Chart container styling */
+        #chart-container {
+            width: 80%;  /* Adjust width as needed */
+            max-width: 800px;  /* Maximum width */
+            height: 400px;  /* Fixed height */
+            margin: 50px auto;  /* Center the chart and add spacing */
+            background: #f9f9f9;  /* Light background color */
+            border: 1px solid #ccc;  /* Optional border */
+            border-radius: 10px;  /* Rounded corners */
+            padding: 20px;  /* Inner spacing */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Add a slight shadow */
+        }
+
+        canvas {
+            display: block; /* Prevent canvas from being inline */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: Arial, sans-serif;">Top 10 Countries by EV Sales for 2023</h1>
+    <div id="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        // Fetch the data from the Flask backend
+        fetch('http://127.0.0.1:5000/top_ten_ev_sales') // Replace with your actual endpoint
+            .then(response => response.json())
+            .then(data => {
+                // Extract country names (regions) and EV sales values
+                const countries = data.map(item => item.region);
+                const sales = data.map(item => item.total_ev_sales);
+
+                // Set up the chart data
+                const chartData = {
+                    labels: countries,
+                    datasets: [{
+                        label: 'Total EV Sales',
+                        data: sales,
+                        backgroundColor: 'skyblue',  // Bar color
+                        borderColor: 'blue',  // Border color of bars
+                        borderWidth: 1,
+                        borderRadius: 10,  // Add border radius to the bars
+                        hoverBackgroundColor: 'lightblue'  // Hover effect
+                    }]
+                };
+
+                // Set up the chart options
+                const options = {
+                    responsive: true,  // Makes the chart responsive
+                    maintainAspectRatio: false, // Prevent resizing based on aspect ratio
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Countries',
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Total EV Sales',
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                };
+
+                // Create the chart
+                const ctx = document.getElementById('myChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Bar chart
+                    data: chartData,
+                    options: options
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>
