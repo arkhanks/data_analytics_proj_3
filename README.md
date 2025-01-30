@@ -89,3 +89,9 @@ Ensure you have all necessary Python libraries installed. Open the `requirements
 3. Run the file, and the Flask server will start.
 4. Open a browser and go to:  
 http://127.0.0.1:5000
+
+## Contributors
+- [**@arkhanks**](https://github.com/arkhanks) (Amy)
+- [**@nitubola88**](https://github.com/nitubola88) (Nitu)
+- [**@Ma-shiki2024**](https://github.com/Ma-shiki2024) (Shiki)
+- [**@Zelyd**](https://github.com/Zelyd) (Niczely)
