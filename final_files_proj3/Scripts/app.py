@@ -9,7 +9,7 @@ CORS(app)  # Enable CORS globally for all routes
 
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname="ev_database",   # Your actual database name
+        dbname="ev_database",  # Your actual database name
         user="postgres",        # Your username
         password="postgres",    # Your password
         host="localhost",       # Default is localhost
@@ -71,10 +71,7 @@ def handle_data():
 
     return jsonify(results)
 
-# Route for the World Projection page (Grouped Bar Chart)
-#@app.route('/world_projection')
-#def world_projection():
-   # return render_template('EVSalesShare.html')  # Render the index1.html file for World Projection
+
 
 # Route to get the data for the grouped bar chart
 @app.route('/get_data', methods=['GET'])
@@ -325,6 +322,15 @@ def map_view():
 @app.route('/static/data/us_states.geojson')
 def geojson_file():
     return send_from_directory('static/data', 'us_states.geojson')
+
+@app.route('/indexmap')
+def indexmap():
+    return render_template('index_map.html')
+
+@app.route('/heatmaps')
+def show_images():
+    return render_template('heatmaps.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
