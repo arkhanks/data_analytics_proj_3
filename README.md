@@ -7,7 +7,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
 ## Folder Structure
 
 ```
-/data_analytics_proj_3
+/final_files_proj3
     ├── /templates
     ├── /static
     ├── /datasets
