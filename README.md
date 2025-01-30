@@ -5,7 +5,7 @@
 This project focuses on analyzing trends in electric vehicle (EV) adoption globally and the availability of EV charging stations in the United States. Using data from the **IEA Global EV Outlook Report** and **OpenEVSE Charging Station Data**, we provide insights through interactive visualizations and analysis. The project combines Python, JavaScript, SQL (PostgreSQL), and Leaflet for creating insightful and interactive maps and charts.
 
 ## Folder Structure
-```markdown
+
 ```
 /data_analytics_proj_3
     ├── /templates
@@ -14,7 +14,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
     ├── app.py
     └── dataset_analysis_visualizations.ipynb
 ```
-```
+
 
 
 
