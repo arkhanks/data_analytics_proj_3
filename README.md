@@ -85,7 +85,7 @@ Ensure you have all necessary Python libraries installed. Open the `requirements
 
 ### **4. Run the Flask App**  
 1. Open your Python IDE (e.g., PyCharm, VS Code).
-2. Open the `app.py` file in the final_files_proj3/Scripts folder.
+2. Open the `app.py` file in the final_files_proj3 folder.
 3. Run the file, and the Flask server will start.
 4. Open a browser and go to:  
 http://127.0.0.1:5000
