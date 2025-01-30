@@ -44,19 +44,19 @@ In addition to the libraries covered in class, this project also utilizes **Char
 
 ## Visualizations
 ### Dashboard
-![Dashboard](static/dashboard.png)
+![Dashboard](final_files_proj3/static/dashboard.png)
 
 ### Density Map for charging ports across USA
-![Charging Stations density map](static/densitymap.png)
+![Charging Stations density map](final_files_proj3/static/densitymap.png)
 
 ### Density Map for charging ports using geojson across USA
-![Charging Stations map](static/geojasondensitymap.png)
+![Charging Stations map](final_files_proj3/static/geojsondensitymap.png)
 
 ### EV Adoption Trends Over Time
-![EV Adoption Trends](static/trends.png)
+![EV Adoption Trends](final_files_proj3/static/trends.png)
 
 ### Charging Stations Heatmap
-![Charging Stations Heatmap](static/heatmap2.png)
+![Charging Stations Heatmap](final_files_proj3/static/heatmap2.png)
 
 ## Ethical Considerations
 Throughout the development of this project, we have considered the ethical implications of data usage, particularly concerning privacy and accessibility. We have used open-source datasets that are publicly available and ensured that all data processing and visualization are transparent and reproducible. No sensitive or personal data has been used, and our visualizations aim to make complex data more accessible to a broad audience.
