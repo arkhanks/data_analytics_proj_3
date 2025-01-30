@@ -11,7 +11,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
   - **scripts/**: Contains Python and JavaScript code for data processing and visualization.
   - **static/**: Stores static files for visualization (HTML, CSS).
   - **templates/**: Flask template files for rendering HTML.
-    
+
 ## Datasets Used
 
 This project leverages the following datasets to analyze and visualize electric vehicle adoption trends and charging stations:
@@ -42,9 +42,56 @@ In addition to the libraries covered in class, this project also utilizes **Char
 - **Interactive Visualization**: A dashboard that provides interactive views of the data, including maps of charging station distribution and EV adoption trends.
 - **Project Documentation**: A comprehensive README file detailing the project, methodology, and ethical considerations.
 
+## Visualizations
+### Dashboard
+![Dashboard](static/dashboard.png)
+
+### Density Map for charging ports across USA
+![Charging Stations density map](static/densitymap.png)
+
+### Density Map for charging ports using geojson across USA
+![Charging Stations map](static/geojasondensitymap.png)
+
+### EV Adoption Trends Over Time
+![EV Adoption Trends](static/trends.png)
+
+### Charging Stations Heatmap
+![Charging Stations Heatmap](static/heatmap2.png)
+
 ## Ethical Considerations
 Throughout the development of this project, we have considered the ethical implications of data usage, particularly concerning privacy and accessibility. We have used open-source datasets that are publicly available and ensured that all data processing and visualization are transparent and reproducible. No sensitive or personal data has been used, and our visualizations aim to make complex data more accessible to a broad audience.
 We also considered the ethical impact of presenting accurate, non-misleading insights, ensuring that the visualizations provide clear, digestible information for users of all skill levels.
 
 ## Conclusion
 The analysis of electric vehicle adoption trends has revealed significant global growth, particularly in regions like china, Europe, and USA. The adoption is closely linked to factors such as government policies, incentives, and local market conditions. Additionally, the availability of charging infrastructure plays a key role, with some areas facing challenges in maintaining a balanced ratio of charging stations to electric vehicles. Overall, the project successfully illustrates these trends, providing valuable insights into the future trajectory of electric vehicle adoption and the associated infrastructure requirements.
+
+## **Setting Up and Running the Project**
+
+### **1. Set Up the Database**  
+- **Using pgAdmin**:  
+  1. Create a new database (e.g., `ev_adoption`).
+  2. Open the **Query Tool** and load the `ev_schema.sql` file.
+  3. Execute the schema file to create the necessary tables.
+
+### **2. Import Data**  
+- **Using pgAdmin**:  
+  1. Right-click the **table** you want to import data into → **Import/Export Data**.
+  2. Select the appropriate CSV file for each dataset.
+  3. Ensure the **serial primary key** column is unchecked (this will auto-generate the values).
+  4. Click **OK** to import the data.
+
+### **3. Install Dependencies**  
+Ensure you have all necessary Python libraries installed. Open the `requirements.txt` file and install them using your Python IDE or editor.
+
+### **4. Run the Flask App**  
+1. Open your Python IDE (e.g., PyCharm, VS Code).
+2. Open the `app.py` file in the project folder.
+3. Run the file, and the Flask server will start.
+4. Open a browser and go to:  
+http://127.0.0.1:5000
+
+## Contributors
+- [**@arkhanks**](https://github.com/arkhanks) (Amy)
+- [**@nitubola88**](https://github.com/nitubola88) (Nitu)
+- [**@Ma-shiki2024**](https://github.com/Ma-shiki2024) (Shiki)
+- [**@Zelyd**](https://github.com/Zelyd) (Niczely)
