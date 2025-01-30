@@ -60,10 +60,10 @@ In addition to the libraries covered in class, this project also utilizes **Char
 ### Dashboard
 ![Dashboard](final_files_proj3/static/dashboard.png)
 
-### Density Map for charging ports across USA
+### Density Map for charging stations across USA
 ![Charging Stations density map](final_files_proj3/static/densitymap.png)
 
-### Density Map for charging ports using geojson across USA
+### Density Map for charging stations using geojson across USA
 ![Charging Stations map](final_files_proj3/static/geojsondensitymap.png)
 
 ### EV Adoption Trends Over Time
