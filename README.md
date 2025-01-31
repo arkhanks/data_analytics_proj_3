@@ -6,19 +6,33 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
 
 ## Folder Structure
 
+```
+/final_files_proj3
+    ├── /templates
+    ├── /static
+    ├── /datasets
+    ├── app.py
+    └── dataset_analysis_visualizations.ipynb
+```
+
+
+
+
+
 - **final_files_proj3/**: Contains all project files, including code, datasets, and visualization outputs.
-  - **data/**: Includes the raw datasets used in the project.
-  - **scripts/**: Contains Python and JavaScript code for data processing and visualization.
-  - **static/**: Stores static files for visualization (HTML, CSS).
+  - **datasets/**: Includes the raw datasets used in the project.
+  - **static/**: Stores static files for visualization.
   - **templates/**: Flask template files for rendering HTML.
+  - **app.py/**: Main Flask app file that initializes the app and handles routing.
+  - **dataset_analysis_visualizations.ipynb/**:Jupyter notebook used for cleaning the datasets, performing exploratory data analysis (EDA), and generating visualizations to uncover insights related to electric vehicles and charging infrastructure.
 
-## Datasets Used
-
+### Datasets Used
 This project leverages the following datasets to analyze and visualize electric vehicle adoption trends and charging stations:
 
-1. **Global EV Outlook Report**: This dataset includes global statistics on electric vehicle adoption, trends, and policies. It provides insights into how the market is evolving in different regions.
-   
-2. **OpenEVSE Charging Station Data**: This dataset contains information on electric vehicle charging stations in the USA, including their locations and availability.
+- [Global EV Outlook Report (IEA)](https://www.iea.org/data-and-statistics/data-product/global-ev-outlook-2024#global-ev-data): This dataset includes global statistics on electric vehicle adoption, trends, and policies. It provides insights into how the market is evolving in different regions.
+
+- [OpenEVSE Charging Station Data (AFDC)](https://afdc.energy.gov/data): This dataset contains information on electric vehicle charging stations in the USA, including their locations and availability.
+
 
 Both datasets are integral to the project's goal of exploring regional adoption trends and the impact of charging infrastructure.
 ## Methodology
@@ -46,10 +60,10 @@ In addition to the libraries covered in class, this project also utilizes **Char
 ### Dashboard
 ![Dashboard](final_files_proj3/static/dashboard.png)
 
-### Density Map for charging ports across USA
+### Density Map for charging stations across USA
 ![Charging Stations density map](final_files_proj3/static/densitymap.png)
 
-### Density Map for charging ports using geojson across USA
+### Density Map for charging stations using geojson across USA
 ![Charging Stations map](final_files_proj3/static/geojsondensitymap.png)
 
 ### EV Adoption Trends Over Time
