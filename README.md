@@ -26,6 +26,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
   - **templates/**: Flask template files for rendering HTML.
   - **app.py/**: Main Flask app file that initializes the app and handles routing.
   - **dataset_analysis_visualizations.ipynb/**:Jupyter notebook used for cleaning the datasets, performing exploratory data analysis (EDA), and generating visualizations to uncover insights related to electric vehicles and charging infrastructure.
+  - **regression_analysis&heatmaps.ipynb/**:Jupyter file with heatmaps and regression analysis.
 
 ### Datasets Used
 This project leverages the following datasets to analyze and visualize electric vehicle adoption trends and charging stations:
