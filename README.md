@@ -77,7 +77,7 @@ Throughout the development of this project, we have considered the ethical impli
 We also considered the ethical impact of presenting accurate, non-misleading insights, ensuring that the visualizations provide clear, digestible information for users of all skill levels.
 
 ## Conclusion
-The analysis of electric vehicle adoption trends has revealed significant global growth, particularly in regions like china, Europe, and USA. The adoption is closely linked to factors such as government policies, incentives, and local market conditions. Additionally, the availability of charging infrastructure plays a key role, with some areas facing challenges in maintaining a balanced ratio of charging stations to electric vehicles. Overall, the project successfully illustrates these trends, providing valuable insights into the future trajectory of electric vehicle adoption and the associated infrastructure requirements.
+The analysis of electric vehicle adoption trends has revealed significant global growth, particularly in regions like China, Europe, and USA. The adoption is closely linked to factors such as government policies, incentives, and local market conditions. Additionally, the availability of charging infrastructure plays a key role, with some areas facing challenges in maintaining a balanced ratio of charging stations to electric vehicles. Overall, the project successfully illustrates these trends, providing valuable insights into the future trajectory of electric vehicle adoption and the associated infrastructure requirements.
 
 ## **Setting Up and Running the Project**
 
@@ -103,6 +103,14 @@ Ensure you have all necessary Python libraries installed. Open the `requirements
 3. Run the file, and the Flask server will start.
 4. Open a browser and go to:  
 http://127.0.0.1:5000
+
+**References**
+- IEA (2024), Global EV Outlook 2024, IEA, Paris
+https://www.iea.org/reports/global-ev-outlook-2024,
+Licence: CC BY 4.0
+- U.S. Department of Energy, OpenEVSE Charging Station Data, (AFDC)
+https://afdc.energy.gov/data
+- ChatGPT and Xpert Learning Assistant for help with heatmap visualization and deciphering and addressing coding errors.
 
 ## Contributors
 - [**@arkhanks**](https://github.com/arkhanks) (Amy)
