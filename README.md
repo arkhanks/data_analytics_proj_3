@@ -26,6 +26,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
   - **app.py/**: Main Flask app file that initializes the app and handles routing.
   - **dataset_analysis_visualizations.ipynb/**:Jupyter notebook used for cleaning the datasets, performing exploratory data analysis (EDA), and generating visualizations to uncover insights related to electric vehicles and charging infrastructure.
 
+### Datasets Used
 This project leverages the following datasets to analyze and visualize electric vehicle adoption trends and charging stations:
 
 - [Global EV Outlook Report (IEA)](https://www.iea.org/data-and-statistics/data-product/global-ev-outlook-2024#global-ev-data): This dataset includes global statistics on electric vehicle adoption, trends, and policies. It provides insights into how the market is evolving in different regions.
