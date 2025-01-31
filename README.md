@@ -12,6 +12,7 @@ This project focuses on analyzing trends in electric vehicle (EV) adoption globa
     ├── /static
     ├── /datasets
     ├── app.py
+    └── regression_analysis&heatmaps.ipynb
     └── dataset_analysis_visualizations.ipynb
 ```
 
